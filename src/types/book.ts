@@ -7,6 +7,10 @@ export interface BookRecommendation {
   amazonLink: string;
   coverImage?: string;
   personalizedExplanation: string;
+  tags?: string;
+  difficultyLevel?: string;
+  industryFocus?: string;
+  learningStyle?: string;
 }
 
 export interface QuizResults {

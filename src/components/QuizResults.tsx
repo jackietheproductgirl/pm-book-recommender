@@ -2,11 +2,10 @@
 
 import React from 'react';
 import { useQuiz } from '@/contexts/QuizContext';
-import { mockRecommendations } from '@/data/mockRecommendations';
 import BookRecommendation from './BookRecommendation';
 
 export default function QuizResults() {
-  const { dispatch } = useQuiz();
+  const { state, dispatch } = useQuiz();
 
   const handleRetakeQuiz = () => {
     dispatch({ type: 'RESET_QUIZ' });
@@ -37,7 +36,7 @@ export default function QuizResults() {
 
         {/* Recommendations */}
         <div className="space-y-6">
-          {mockRecommendations.map((book, index) => (
+          {state.recommendations.map((book, index) => (
             <BookRecommendation key={book.id} book={book} index={index} />
           ))}
         </div>

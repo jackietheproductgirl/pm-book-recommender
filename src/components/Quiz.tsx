@@ -8,7 +8,7 @@ import QuizProgress from './QuizProgress';
 import QuizResults from './QuizResults';
 
 export default function Quiz() {
-  const { state, dispatch } = useQuiz();
+  const { state, dispatch, completeQuiz } = useQuiz();
   const currentQuestion = quizQuestions[state.currentQuestionIndex];
   const totalQuestions = quizQuestions.length;
 
@@ -22,9 +22,9 @@ export default function Quiz() {
     });
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (state.currentQuestionIndex === totalQuestions - 1) {
-      dispatch({ type: 'COMPLETE_QUIZ' });
+      await completeQuiz();
     } else {
       dispatch({ type: 'NEXT_QUESTION' });
     }

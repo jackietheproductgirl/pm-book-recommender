@@ -2,12 +2,15 @@
 
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 import { QuizAnswer } from '@/data/quizData';
+import { BookRecommendation } from '@/types/book';
+import { QuizAnswers } from '@/types/quiz';
 
 interface QuizState {
   currentQuestionIndex: number;
   answers: QuizAnswer[];
   isComplete: boolean;
   isLoading: boolean;
+  recommendations: BookRecommendation[];
 }
 
 type QuizAction =
@@ -16,6 +19,7 @@ type QuizAction =
   | { type: 'PREVIOUS_QUESTION' }
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'COMPLETE_QUIZ' }
+  | { type: 'SET_RECOMMENDATIONS'; payload: BookRecommendation[] }
   | { type: 'RESET_QUIZ' };
 
 const initialState: QuizState = {
@@ -23,6 +27,7 @@ const initialState: QuizState = {
   answers: [],
   isComplete: false,
   isLoading: false,
+  recommendations: [],
 };
 
 function quizReducer(state: QuizState, action: QuizAction): QuizState {
@@ -67,6 +72,12 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         isComplete: true,
       };
 
+    case 'SET_RECOMMENDATIONS':
+      return {
+        ...state,
+        recommendations: action.payload,
+      };
+
     case 'RESET_QUIZ':
       return initialState;
 
@@ -78,6 +89,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
 interface QuizContextType {
   state: QuizState;
   dispatch: React.Dispatch<QuizAction>;
+  completeQuiz: () => Promise<void>;
 }
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
@@ -85,8 +97,56 @@ const QuizContext = createContext<QuizContextType | undefined>(undefined);
 export function QuizProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(quizReducer, initialState);
 
+  const completeQuiz = async () => {
+    dispatch({ type: 'SET_LOADING', payload: true });
+    
+    try {
+      // Convert answers to the format expected by the API
+      const quizAnswers: QuizAnswers = {
+        experience: '',
+        goals: '',
+        industry: '',
+        learningStyle: '',
+      };
+
+      state.answers.forEach(answer => {
+        const question = answer.questionId;
+        if (question === 'experience') quizAnswers.experience = answer.answer;
+        else if (question === 'goals') quizAnswers.goals = answer.answer;
+        else if (question === 'industry') quizAnswers.industry = answer.answer;
+        else if (question === 'style') quizAnswers.learningStyle = answer.answer;
+        else if (question === 'focus') quizAnswers.goals = answer.answer; // Use focus as additional goals
+      });
+
+      // Call the API
+      const response = await fetch('/api/recommendations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ answers: quizAnswers }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get recommendations');
+      }
+
+      const data = await response.json();
+      dispatch({ type: 'SET_RECOMMENDATIONS', payload: data.recommendations });
+      dispatch({ type: 'COMPLETE_QUIZ' });
+    } catch (error) {
+      console.error('Error completing quiz:', error);
+      // Fallback to mock data
+      const { mockRecommendations } = await import('@/data/mockRecommendations');
+      dispatch({ type: 'SET_RECOMMENDATIONS', payload: mockRecommendations });
+      dispatch({ type: 'COMPLETE_QUIZ' });
+    } finally {
+      dispatch({ type: 'SET_LOADING', payload: false });
+    }
+  };
+
   return (
-    <QuizContext.Provider value={{ state, dispatch }}>
+    <QuizContext.Provider value={{ state, dispatch, completeQuiz }}>
       {children}
     </QuizContext.Provider>
   );
