@@ -8,23 +8,29 @@ const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 export async function getAirtableBooks(): Promise<BookRecommendation[]> {
   // Check cache first
   if (cachedBooks && Date.now() - cacheTimestamp < CACHE_DURATION) {
+    console.log('Using cached Airtable books:', cachedBooks.length);
     return cachedBooks;
   }
 
   try {
-    // For now, return mock data since we don't have Airtable credentials
-    // TODO: Replace with actual Airtable API call
-    const books = await getMockAirtableData();
+    // Try real Airtable API first
+    console.log('Fetching from real Airtable API...');
+    const books = await fetchFromAirtable();
+    console.log('Real Airtable data received:', books.length, 'books');
+    console.log('Sample book:', books[0]);
     
     // Update cache
     cachedBooks = books;
     cacheTimestamp = Date.now();
-    
     return books;
   } catch (error) {
-    console.error('Error fetching Airtable books:', error);
-    // Return cached data if available, otherwise empty array
-    return cachedBooks || [];
+    console.error('Error fetching Airtable books, falling back to mock data:', error);
+    // Fallback to mock data
+    console.log('Using mock Airtable data as fallback');
+    const books = await getMockAirtableData();
+    cachedBooks = books;
+    cacheTimestamp = Date.now();
+    return books;
   }
 }
 
@@ -154,42 +160,60 @@ export async function fetchFromAirtable(): Promise<BookRecommendation[]> {
   const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
   const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME || 'Books';
 
+  console.log('Airtable config:', {
+    hasApiKey: !!AIRTABLE_API_KEY,
+    baseId: AIRTABLE_BASE_ID,
+    tableName: AIRTABLE_TABLE_NAME
+  });
+
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
     console.warn('Airtable credentials not configured, using mock data');
     return getMockAirtableData();
   }
 
   try {
-    const response = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`,
-      {
-        headers: {
-          'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const encodedTableName = encodeURIComponent(AIRTABLE_TABLE_NAME);
+    const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodedTableName}`;
+    console.log('Fetching from Airtable URL:', url);
+    
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('Airtable response status:', response.status);
 
     if (!response.ok) {
       throw new Error(`Airtable API error: ${response.status}`);
     }
 
     const data = await response.json();
+    console.log('Raw Airtable data:', data);
+    console.log('Number of records:', data.records?.length || 0);
     
-    return data.records.map((record: any) => ({
-      id: record.id,
-      title: record.fields.title || '',
-      author: record.fields.author || '',
-      summary: record.fields.summary || '',
-      goodreadsRating: record.fields.goodreads_rating || 0,
-      amazonLink: record.fields.amazon_link || '',
-      coverImage: record.fields.cover_image || '',
-      personalizedExplanation: record.fields.personalized_explanation || '',
-      tags: record.fields.tags?.join(', ') || '',
-      difficultyLevel: record.fields.difficulty_level || '',
-      industryFocus: record.fields.industry_focus?.join(', ') || '',
-      learningStyle: record.fields.learning_style?.join(', ') || '',
-    }));
+    const books = data.records.map((record: any) => {
+      const book = {
+        id: record.id,
+        title: record.fields.title || '',
+        author: record.fields.author || '',
+        summary: record.fields.summary || '',
+        goodreadsRating: record.fields.goodreads_rating || 0,
+        amazonLink: record.fields.amazon_link || '',
+        coverImage: record.fields.cover_image || '',
+        personalizedExplanation: record.fields.personalized_explanation || '',
+        tags: record.fields.tags?.join(', ') || '',
+        difficultyLevel: record.fields.difficulty_level || '',
+        industryFocus: record.fields.industry_focus?.join(', ') || '',
+        learningStyle: record.fields.learning_style?.join(', ') || '',
+      };
+      console.log('Parsed book:', book);
+      return book;
+    });
+    
+    console.log('Final parsed books:', books.length);
+    return books;
   } catch (error) {
     console.error('Error fetching from Airtable:', error);
     throw error;
