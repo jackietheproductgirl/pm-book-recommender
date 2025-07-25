@@ -128,15 +128,17 @@ Build a quiz-based book recommendation app for new/aspiring PMs using hybrid mat
 - [ ] Recommendations load within 10 seconds
 - [ ] Mobile experience is smooth and intuitive
 - [ ] GPT explanations feel personalized and helpful
-- [x] **COMPLETED: Amazon links work correctly with affiliate tracking** - All 216 links verified
+- [ ] **TODO: Amazon links work correctly with affiliate tracking** - Manual verification needed
 
 ## QA & Testing Tasks
 
 ### 13. Amazon Links QA
-- [x] **COMPLETED: Comprehensive QA of all Amazon book links**
-- [x] **COMPLETED: Verified 216 links across 4 CSV batches**
-- [x] **COMPLETED: Confirmed 100% link validity (216/216 working)**
-- [x] **COMPLETED: Generated detailed QA report**
+- [x] **COMPLETED: Initial QA of all Amazon book links (HTTP validation only)**
+- [x] **COMPLETED: Identified need for deep content validation**
+- [x] **COMPLETED: Generated manual verification guide for all 216 links**
+- [x] **COMPLETED: Created quick reference list for efficient checking**
+- [ ] **TODO: Manual verification of all 216 Amazon links (content validation)**
+- [ ] **TODO: Fix incorrect Amazon links identified during manual verification**
 - [ ] Set up automated link monitoring for future maintenance
 
 ---
