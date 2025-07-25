@@ -11,21 +11,21 @@ export default function QuizProgress({ current, total }: QuizProgressProps) {
   const progressPercentage = (current / total) * 100;
 
   return (
-    <div className="mb-8">
+    <div className="mb-6">
       {/* Progress Text */}
-      <div className="flex justify-between items-center mb-3">
-        <span className="text-sm font-semibold text-gray-700">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-sm font-medium text-gray-600">
           Question {current} of {total}
         </span>
-        <span className="text-sm font-medium text-gray-600">
+        <span className="text-sm text-gray-500">
           {Math.round(progressPercentage)}% complete
         </span>
       </div>
 
       {/* Progress Bar */}
-      <div className="w-full bg-gray-200 rounded-full h-3 shadow-inner">
+      <div className="w-full bg-gray-200 rounded-full h-2">
         <div
-          className="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-500 ease-out shadow-lg"
+          className="bg-blue-600 h-2 rounded-full transition-all duration-300 ease-out"
           style={{ width: `${progressPercentage}%` }}
         ></div>
       </div>

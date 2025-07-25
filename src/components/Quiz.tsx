@@ -5,10 +5,9 @@ import { useQuiz } from '@/contexts/QuizContext';
 import { quizQuestions } from '@/data/quizData';
 import QuizQuestion from './QuizQuestion';
 import QuizProgress from './QuizProgress';
-import QuizResults from './QuizResults';
 
 export default function Quiz() {
-  const { state, dispatch, completeQuiz } = useQuiz();
+  const { state, dispatch } = useQuiz();
   const currentQuestion = quizQuestions[state.currentQuestionIndex];
   const totalQuestions = quizQuestions.length;
 
@@ -22,9 +21,9 @@ export default function Quiz() {
     });
   };
 
-  const handleNext = async () => {
+  const handleNext = () => {
     if (state.currentQuestionIndex === totalQuestions - 1) {
-      await completeQuiz();
+      dispatch({ type: 'COMPLETE_QUIZ' });
     } else {
       dispatch({ type: 'NEXT_QUESTION' });
     }
@@ -38,21 +37,16 @@ export default function Quiz() {
     answer => answer.questionId === currentQuestion.id
   );
 
-  // Show results if quiz is complete
-  if (state.isComplete) {
-    return <QuizResults />;
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Find Your Next PM Book
           </h1>
-          <p className="text-gray-600 text-lg">
-            Let's discover the perfect books for your product management journey ✨
+          <p className="text-gray-600">
+            Let's discover the perfect books for your product management journey
           </p>
         </div>
 
@@ -63,7 +57,7 @@ export default function Quiz() {
         />
 
         {/* Question */}
-        <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 border border-gray-100">
+        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
           <QuizQuestion
             question={currentQuestion}
             selectedAnswer={currentAnswer?.answer}
@@ -72,14 +66,14 @@ export default function Quiz() {
         </div>
 
         {/* Navigation */}
-        <div className="flex justify-between items-center gap-4">
+        <div className="flex justify-between items-center">
           <button
             onClick={handlePrevious}
             disabled={state.currentQuestionIndex === 0}
-            className={`px-6 py-4 rounded-2xl font-semibold transition-all duration-200 ${
+            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
               state.currentQuestionIndex === 0
                 ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
-                : 'text-gray-700 bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-200'
+                : 'text-gray-700 bg-white hover:bg-gray-50 shadow-sm'
             }`}
           >
             Previous
@@ -88,10 +82,10 @@ export default function Quiz() {
           <button
             onClick={handleNext}
             disabled={!currentAnswer}
-            className={`px-8 py-4 rounded-2xl font-semibold transition-all duration-200 ${
+            className={`px-8 py-3 rounded-lg font-medium transition-colors ${
               !currentAnswer
                 ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
-                : 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transform hover:scale-105'
+                : 'text-white bg-blue-600 hover:bg-blue-700 shadow-sm'
             }`}
           >
             {state.currentQuestionIndex === totalQuestions - 1 ? 'Get Recommendations' : 'Next'}
@@ -101,8 +95,8 @@ export default function Quiz() {
         {/* Loading State */}
         {state.isLoading && (
           <div className="mt-8 text-center">
-            <div className="inline-block animate-spin rounded-full h-10 w-10 border-4 border-blue-600 border-t-transparent"></div>
-            <p className="mt-4 text-gray-600 text-lg">Finding your perfect books...</p>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <p className="mt-2 text-gray-600">Finding your perfect books...</p>
           </div>
         )}
       </div>
