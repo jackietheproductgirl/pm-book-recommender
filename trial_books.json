@@ -1,0 +1,199 @@
+[
+  {
+    "title": "Inspired: How To Create Tech Products Customers Love",
+    "author": "Marty Cagan",
+    "summary": "A practical guide for product managers to build products that customers love, based on lessons from top tech companies like Amazon, Google, and Netflix.",
+    "amazon_link": "https://www.amazon.com/dp/1119387507",
+    "difficulty_level": "Beginner",
+    "tags": [
+      "fundamentals",
+      "product strategy"
+    ],
+    "industry_focus": "General",
+    "learning_style": "Framework-driven",
+    "source": [
+      "lenny's podcast",
+      "ken norton"
+    ],
+    "reason_for_inclusion": "Essential foundational book recommended by top PMs and widely referenced across tech blogs and podcasts.",
+    "published_year": 2008,
+    "record_id": ""
+  },
+  {
+    "title": "The Making of a Manager",
+    "author": "Julie Zhuo",
+    "summary": "Julie Zhuo shares real-world lessons from her experience managing teams at Facebook, making this a relatable and actionable guide for first-time managers and product leaders.",
+    "amazon_link": "https://www.amazon.com/dp/0735219567",
+    "difficulty_level": "Beginner",
+    "tags": [
+      "leadership",
+      "stakeholder management",
+      "communication"
+    ],
+    "industry_focus": "General",
+    "learning_style": "Narrative",
+    "source": [
+      "lenny's podcast"
+    ],
+    "reason_for_inclusion": "Popular leadership book among new PMs and managers, focused on soft skills often overlooked in technical training.",
+    "published_year": 2019,
+    "record_id": ""
+  },
+  {
+    "title": "Escaping the Build Trap",
+    "author": "Melissa Perri",
+    "summary": "This book helps product managers avoid the trap of shipping features without solving real problems. Perri lays out a clear framework for becoming outcome-focused.",
+    "amazon_link": "https://www.amazon.com/dp/149197379X",
+    "difficulty_level": "Intermediate",
+    "tags": [
+      "product strategy",
+      "discovery"
+    ],
+    "industry_focus": "B2B",
+    "learning_style": "Framework-driven",
+    "source": [
+      "mind the product"
+    ],
+    "reason_for_inclusion": "Explains the mindset shift from outputs to outcomes, a core principle in modern product thinking.",
+    "published_year": 2018,
+    "record_id": ""
+  },
+  {
+    "title": "Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days",
+    "author": "Jake Knapp",
+    "summary": "A practical guide to the design sprint methodology used by Google Ventures, helping teams solve big problems and test new ideas in just five days.",
+    "amazon_link": "https://www.amazon.com/dp/150112174X",
+    "difficulty_level": "Intermediate",
+    "tags": [
+      "discovery",
+      "design & ux",
+      "delivery & execution"
+    ],
+    "industry_focus": "General",
+    "learning_style": "Framework-driven",
+    "source": [
+      "lenny's podcast",
+      "mind the product"
+    ],
+    "reason_for_inclusion": "Essential methodology for PMs working on rapid prototyping and user testing, widely adopted by design and product teams.",
+    "published_year": 2016,
+    "record_id": ""
+  },
+  {
+    "title": "The Mom Test: How to talk to customers & learn if your business is a good idea when everyone is lying to you",
+    "author": "Rob Fitzpatrick",
+    "summary": "A short, practical guide that teaches founders and product managers how to talk to customers without bias and extract honest feedback that actually helps validate ideas.",
+    "amazon_link": "https://www.amazon.com/dp/1492180742",
+    "difficulty_level": "Beginner",
+    "tags": [
+      "fundamentals",
+      "discovery"
+    ],
+    "industry_focus": "General",
+    "learning_style": "Framework-driven",
+    "source": [
+      "ken norton"
+    ],
+    "reason_for_inclusion": "Essential for any PM doing customer research and validation, widely recommended by startup communities.",
+    "published_year": 2013,
+    "record_id": ""
+  },
+  {
+    "title": "Hooked: How to Build Habit-Forming Products",
+    "author": "Nir Eyal",
+    "summary": "A behavioral design playbook that explains how to build habit-forming products using a four-step hook model, with real examples from successful tech companies.",
+    "amazon_link": "https://www.amazon.com/dp/1591847788",
+    "difficulty_level": "Intermediate",
+    "tags": [
+      "growth",
+      "design & ux",
+      "product strategy"
+    ],
+    "industry_focus": "B2C",
+    "learning_style": "Framework-driven",
+    "source": [
+      "lenny's podcast"
+    ],
+    "reason_for_inclusion": "Critical for PMs working on consumer products and understanding user psychology and engagement.",
+    "published_year": 2014,
+    "record_id": ""
+  },
+  {
+    "title": "Product-Led Growth: How to Build a Product That Sells Itself",
+    "author": "Wes Bush",
+    "summary": "A comprehensive guide to building products that drive their own growth through user experience and product-led strategies, with practical frameworks for SaaS companies.",
+    "amazon_link": "https://www.amazon.com/dp/1736096802",
+    "difficulty_level": "Intermediate",
+    "tags": [
+      "growth",
+      "product strategy"
+    ],
+    "industry_focus": "B2B",
+    "learning_style": "Case Studies",
+    "source": [
+      "lenny's podcast",
+      "mind the product"
+    ],
+    "reason_for_inclusion": "Essential for PMs working in SaaS and B2B products where product-led growth is crucial for success.",
+    "published_year": 2019,
+    "record_id": ""
+  },
+  {
+    "title": "The Design of Everyday Things",
+    "author": "Don Norman",
+    "summary": "A foundational book on design thinking and user experience principles that every product manager should understand, covering cognitive psychology and human-centered design.",
+    "amazon_link": "https://www.amazon.com/dp/0465050654",
+    "difficulty_level": "Beginner",
+    "tags": [
+      "design & ux",
+      "fundamentals"
+    ],
+    "industry_focus": "General",
+    "learning_style": "Reference-style",
+    "source": [
+      "mind the product"
+    ],
+    "reason_for_inclusion": "Classic text that teaches the fundamental principles of good design and user experience that apply to all products.",
+    "published_year": 1988,
+    "record_id": ""
+  },
+  {
+    "title": "Measure What Matters: How Google, Bono, and the Gates Foundation Rock the World with OKRs",
+    "author": "John Doerr",
+    "summary": "A guide to OKRs (Objectives and Key Results) for goal setting and measurement in product teams, with real examples from successful organizations.",
+    "amazon_link": "https://www.amazon.com/dp/0525536221",
+    "difficulty_level": "Intermediate",
+    "tags": [
+      "leadership",
+      "delivery & execution"
+    ],
+    "industry_focus": "General",
+    "learning_style": "Case Studies",
+    "source": [
+      "ken norton"
+    ],
+    "reason_for_inclusion": "Widely adopted framework for goal setting and measurement that many tech companies use.",
+    "published_year": 2017,
+    "record_id": ""
+  },
+  {
+    "title": "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers",
+    "author": "Ben Horowitz",
+    "summary": "Insights on leadership and decision-making in product management from a successful entrepreneur and investor, covering the toughest challenges PMs face.",
+    "amazon_link": "https://www.amazon.com/dp/0062273205",
+    "difficulty_level": "Advanced",
+    "tags": [
+      "leadership",
+      "stakeholder management"
+    ],
+    "industry_focus": "General",
+    "learning_style": "Narrative",
+    "source": [
+      "ken norton",
+      "lenny's podcast"
+    ],
+    "reason_for_inclusion": "Essential for senior PMs and product leaders dealing with complex organizational challenges and tough decisions.",
+    "published_year": 2014,
+    "record_id": ""
+  }
+]

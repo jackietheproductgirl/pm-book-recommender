@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Inspired: How To Create Tech Products Customers Love",
+    "author": "Marty Cagan",
+    "summary": "A practical guide for product managers to build products that customers love, based on lessons from top tech companies like Amazon, Google, and Netflix.",
+    "amazon_link": "https://www.amazon.com/dp/1119387507",
+    "difficulty_level": "Beginner",
+    "tags": ["fundamentals", "product strategy"],
+    "industry_focus": "General",
+    "learning_style": "Framework-driven",
+    "source": ["ken norton", "lenny's podcast"],
+    "reason_for_inclusion": "Essential foundational book recommended by top PMs and widely referenced across tech blogs and podcasts.",
+    "published_year": 2008,
+    "record_id": ""
+  },
+  {
+    "title": "The Making of a Manager",
+    "author": "Julie Zhuo",
+    "summary": "Julie Zhuo shares real-world lessons from her experience managing teams at Facebook, making this a relatable and actionable guide for first-time managers and product leaders.",
+    "amazon_link": "https://www.amazon.com/dp/0735219567",
+    "difficulty_level": "Beginner",
+    "tags": ["leadership", "stakeholder management", "communication"],
+    "industry_focus": "General",
+    "learning_style": "Narrative",
+    "source": ["lenny's podcast"],
+    "reason_for_inclusion": "Popular leadership book among new PMs and managers, focused on soft skills often overlooked in technical training.",
+    "published_year": 2019,
+    "record_id": ""
+  },
+  {
+    "title": "Escaping the Build Trap",
+    "author": "Melissa Perri",
+    "summary": "This book helps product managers avoid the trap of shipping features without solving real problems. Perri lays out a clear framework for becoming outcome-focused.",
+    "amazon_link": "https://www.amazon.com/dp/149197379X",
+    "difficulty_level": "Intermediate",
+    "tags": ["product strategy", "discovery"],
+    "industry_focus": "B2B",
+    "learning_style": "Framework-driven",
+    "source": ["mind the product"],
+    "reason_for_inclusion": "Explains the mindset shift from outputs to outcomes, a core principle in modern product thinking.",
+    "published_year": 2018,
+    "record_id": ""
+  },
+  {
+    "title": "Continuous Discovery Habits",
+    "author": "Teresa Torres",
+    "summary": "A tactical guide to building a continuous discovery habit, helping product teams validate ideas through weekly customer touchpoints and decision-making frameworks.",
+    "amazon_link": "https://www.amazon.com/dp/1736633309",
+    "difficulty_level": "Intermediate",
+    "tags": ["discovery", "design & ux", "data & analytics"],
+    "industry_focus": "General",
+    "learning_style": "Case Studies",
+    "source": ["lenny's podcast", "mind the product"],
+    "reason_for_inclusion": "Widely recommended for teaching practical user research and discovery techniques, especially for early-stage and cross-functional teams.",
+    "published_year": 2021,
+    "record_id": ""
+  },
+  {
+    "title": "Lean Analytics: Use Data to Build a Better Startup Faster",
+    "author": "Alistair Croll & Benjamin Yoskovitz",
+    "summary": "A hands-on guide to using data to validate product-market fit, measure traction, and make smarter product decisions — tailored for lean startup teams and growth-focused PMs.",
+    "amazon_link": "https://www.amazon.com/dp/1449335675",
+    "difficulty_level": "Advanced",
+    "tags": ["data & analytics", "growth", "product strategy"],
+    "industry_focus": "B2B",
+    "learning_style": "Reference-style",
+    "source": ["goodreads", "y combinator"],
+    "reason_for_inclusion": "Excellent resource for PMs working in growth or early-stage products who want to apply data more effectively.",
+    "published_year": 2013,
+    "record_id": ""
+  }
+] 

@@ -1,164 +1,124 @@
-# 📚 Airtable Import Instructions: 200 PM Books
+# 📚 Airtable Import Instructions: PM Book Recommender
 
 ## Overview
-This guide will help you import 200 high-quality product management books into your Airtable base. The books are organized into 4 CSV files, each containing 50 books with comprehensive metadata.
+This guide will help you set up your Airtable base to receive high-quality product management books from the `quality_book_scraper.py` script. The schema is designed to work with fresh, curated data from trusted sources like Lenny's podcast, Ken Norton's blog, and Y Combinator.
 
-## 📁 Files Included
-- `pm-books-batch-1.csv` - 50 books (Fundamentals, Leadership, Strategy)
-- `pm-books-batch-2.csv` - 50 books (Technical Skills, Data Science, DevOps)
-- `pm-books-batch-3.csv` - 50 books (Specialized Domains, Industry Focus)
-- `pm-books-batch-4.csv` - 50 books (Advanced Topics, Emerging Technologies)
-
-## 🎯 Total: 200 Books
+## 🎯 Purpose
+The goal is to build a high-quality, schema-aligned book dataset for your PM Book Recommender app using fresh inputs only.
 
 ---
 
-## 📋 Airtable Field Mapping
+## 📋 Airtable Schema Specification
 
 ### Required Fields (Must be created in Airtable)
-| CSV Column | Airtable Field Name | Field Type | Description |
-|------------|-------------------|------------|-------------|
-| `title` | `title` | Single line text | Book title |
-| `author` | `author` | Single line text | Book author(s) |
-| `summary` | `summary` | Long text | 1-sentence book summary |
-| `goodreads_rating` | `goodreads_rating` | Number | Goodreads rating (0-5) |
-| `amazon_link` | `amazon_link` | URL | Amazon purchase link |
-| `cover_image` | `cover_image` | URL | Book cover image URL |
-| `difficulty_level` | `difficulty_level` | Single select | beginner, intermediate, advanced |
-| `tags` | `tags` | Multiple select | Comma-separated tags |
-| `industry_focus` | `industry_focus` | Multiple select | Target industries |
-| `learning_style` | `learning_style` | Multiple select | Learning preferences |
+| Field Name | Field Type | Description | Options/Constraints |
+|------------|------------|-------------|-------------------|
+| `title` | Single line text | Book title | Required |
+| `author` | Single line text | Book author(s) | Required |
+| `summary` | Long text | 1-sentence book summary | Required |
+| `goodreads_rating` | Number | Goodreads rating | 0-5 range |
+| `amazon_link` | URL | Amazon purchase link | Required |
+| `cover_image` | URL | Book cover image URL | Required |
+| `difficulty_level` | Single select | Book difficulty | Beginner, Intermediate, Advanced |
+| `tags` | Multiple select | Book categories | See options below |
+| `industry_focus` | Single select | Target industry | See options below |
+| `learning_style` | Single select | Learning approach | See options below |
+| `source` | Multiple select | Data source | See options below |
+| `reason_for_inclusion` | Long text | Why this book was included | Required |
+| `published_year` | Number | Publication year | 1900-current year |
+| `number_of_reviews` | Number | Goodreads review count | Non-negative integer |
+| `record_id` | Formula | Auto-generated ID | `RECORD_ID()` |
 
 ---
 
-## 🚀 Step-by-Step Import Process
+## 🚀 Step-by-Step Setup Process
 
 ### Step 1: Prepare Your Airtable Base
-1. **Open your Airtable base** (Book Recommender)
-2. **Navigate to the "books" table**
-3. **Verify field structure** matches the mapping above
+1. **Open your Airtable base** (PM Book Recommender)
+2. **Navigate to the "books" table** (or create one)
+3. **Verify field structure** matches the schema above
 
 ### Step 2: Create Required Fields (if missing)
-If any fields don't exist, create them with these settings:
 
 #### Single Select Fields
 - **`difficulty_level`**
-  - Options: `beginner`, `intermediate`, `advanced`
+  - Options: `Beginner`, `Intermediate`, `Advanced`
+
+- **`industry_focus`**
+  - Options: `General`, `B2B`, `B2C`, `Health Tech`, `Fintech`, `AI / ML`, `GovTech`, `EdTech`, `Marketplace`, `E-commerce`
+
+- **`learning_style`**
+  - Options: `Narrative`, `Framework-driven`, `Reference-style`, `Case Studies`
 
 #### Multiple Select Fields
 - **`tags`** - Add these options:
   ```
-  fundamentals, product management, customer development, strategy, 
-  technical skills, data science, analytics, software development, 
-  leadership, management, innovation, growth, user research, 
-  ux design, a/b testing, experimentation, lean startup, 
-  agile, devops, microservices, cloud computing, ai, 
-  machine learning, blockchain, iot, sustainability, 
-  social impact, healthcare, fintech, edtech, retail, 
-  entertainment, gaming, music, video, photography, 
-  communication, collaboration, learning, assessment, 
-  virtual reality, augmented reality, mixed reality, 
-  voice technology, conversational ai, computer vision, 
-  natural language processing, deep learning, reinforcement learning, 
-  generative ai, edge computing, quantum computing, 
-  neuromorphic computing, biological computing
+  fundamentals, product strategy, stakeholder management, 
+  technical skills, growth, data & analytics, design & ux, 
+  leadership, ai & emerging tech, career navigation, 
+  discovery, delivery & execution, ethics & accessibility, 
+  communication
   ```
 
-- **`industry_focus`** - Add these options:
+- **`source`** - Add these options:
   ```
-  general, B2B, B2C, SaaS, enterprise, startup, 
-  mobile, web, social media, e-commerce, fintech, 
-  healthtech, edtech, cleantech, agtech, proptech, 
-  legaltech, govtech, martech, salestech, adtech, 
-  regtech, insurtech, hr tech, transportation, energy, 
-  agriculture, construction, manufacturing, retail, 
-  hospitality, entertainment, sports, gaming, music, 
-  video, photography, communication, collaboration, 
-  vr, ar, mr, voice, ai, iot, quantum, biotech, 
-  nanotech, spacetech, defensetech, global
+  ken norton, lenny's podcast, mind the product, 
+  y combinator, goodreads
   ```
 
-- **`learning_style`** - Add these options:
-  ```
-  practical, theoretical, case_studies, technical
-  ```
-
-### Step 3: Import CSV Files
-**Import each batch separately:**
-
-1. **Batch 1** (`pm-books-batch-1.csv`)
-   - In Airtable, click "Import" or "+" to add records
-   - Select "CSV file"
-   - Upload `pm-books-batch-1.csv`
-   - Map fields according to the table above
-   - Import
-
-2. **Batch 2** (`pm-books-batch-2.csv`)
-   - Repeat process for second batch
-   - Import to same table
-
-3. **Batch 3** (`pm-books-batch-3.csv`)
-   - Repeat process for third batch
-   - Import to same table
-
-4. **Batch 4** (`pm-books-batch-4.csv`)
-   - Repeat process for fourth batch
-   - Import to same table
-
-### Step 4: Verify Import
-After importing all batches:
-1. **Check record count** - Should be 200+ books (including your existing 3)
-2. **Verify field mapping** - Ensure all fields populated correctly
-3. **Test filtering** - Try filtering by difficulty_level, tags, etc.
-4. **Check URLs** - Verify Amazon links and cover images work
+#### Other Fields
+- **`record_id`** - Create as a formula field with: `RECORD_ID()`
+- **`goodreads_rating`** - Set field type to "Number" with decimal places
+- **`published_year`** - Set field type to "Number" (whole numbers)
+- **`number_of_reviews`** - Set field type to "Number" (whole numbers)
 
 ---
 
-## 📊 Book Categories Overview
+## 🔄 Data Import Process
 
-### Batch 1: Fundamentals & Leadership (50 books)
-- **Core PM Books**: Inspired, Mom Test, Hooked, Design of Everyday Things
-- **Leadership**: Hard Thing About Hard Things, Good to Great, Radical Candor
-- **Strategy**: Competitive Strategy, Blue Ocean Strategy, Crossing the Chasm
-- **Psychology**: Thinking Fast and Slow, Drive, Made to Stick, Switch
+### Using quality_book_scraper.py
+1. **Run the scraper**: `python quality_book_scraper.py`
+2. **Export data**: Use the script's export functions
+3. **Import to Airtable**: Use Airtable's API or import features
 
-### Batch 2: Technical Skills & Data (50 books)
-- **Data Science**: Data Science for Business, Python for Data Analysis, SQL
-- **Software Development**: Clean Code, Pragmatic Programmer, Design Patterns
-- **DevOps**: Phoenix Project, DevOps Handbook, Site Reliability Engineering
-- **Architecture**: Microservices, Cloud Native, Infrastructure as Code
-
-### Batch 3: Specialized Domains (50 books)
-- **Industry-Specific**: SaaS, B2B, B2C, Enterprise, Startup guides
-- **Technology Focus**: AI/ML, Blockchain, IoT, Mobile, Web
-- **Domain Expertise**: Healthcare, Fintech, Edtech, Legal, Government
-- **Product Types**: API, Platform, Marketplace, Subscription, Freemium
-
-### Batch 4: Advanced & Emerging (50 books)
-- **Advanced Topics**: Product Analytics, Strategy, User Research, A/B Testing
-- **Emerging Tech**: VR/AR, Voice, Conversational AI, Computer Vision
-- **AI/ML**: Machine Learning, Deep Learning, NLP, Generative AI
-- **Future Tech**: Quantum Computing, Edge Computing, Neuromorphic Computing
+### Manual Import (if needed)
+1. **Prepare data** in the correct format
+2. **Use Airtable's import feature** or API
+3. **Map fields** according to the schema above
+4. **Verify data** after import
 
 ---
 
-## 🎯 Book Distribution by Difficulty
+## ✅ Validation Checklist
 
-| Difficulty | Count | Percentage |
-|------------|-------|------------|
-| **Beginner** | 45 | 22.5% |
-| **Intermediate** | 120 | 60% |
-| **Advanced** | 35 | 17.5% |
+### Before Import
+- [ ] All required fields created in Airtable
+- [ ] Field types match schema specification
+- [ ] Multiple select options configured
+- [ ] Formula field for record_id created
 
-## 🏷️ Popular Tags Distribution
+### After Import
+- [ ] Data validates against schema
+- [ ] URLs working (Amazon links, cover images)
+- [ ] Filtering working (by difficulty, tags, industry)
+- [ ] No duplicate entries
+- [ ] Test quiz flow with new data
 
-| Tag Category | Examples | Count |
-|--------------|----------|-------|
-| **Fundamentals** | product management, strategy, fundamentals | 60+ |
-| **Technical** | technical skills, software development, data science | 80+ |
-| **Leadership** | leadership, management, team building | 40+ |
-| **Growth** | growth, user acquisition, retention | 30+ |
-| **Emerging Tech** | ai, blockchain, iot, vr/ar | 50+ |
+---
+
+## 🎯 Schema Benefits
+
+### Data Quality
+- **Validated inputs**: All data validated against schema
+- **Consistent format**: Standardized field types and values
+- **Multi-select support**: Proper handling of tags and sources
+- **URL validation**: Amazon links and cover images verified
+
+### Flexibility
+- **Scalable**: Easy to add new books
+- **Maintainable**: Clear schema documentation
+- **Extensible**: Can add new fields as needed
+- **Source tracking**: Know where each book came from
 
 ---
 
@@ -170,48 +130,80 @@ After importing all batches:
 - **Solution**: Create the missing field in Airtable first
 
 **Issue**: Multiple select fields not importing correctly
-- **Solution**: Ensure the CSV values match exactly with Airtable options
+- **Solution**: Ensure the values match exactly with Airtable options (case-sensitive)
 
 **Issue**: URLs not working
 - **Solution**: Check that the URL field type is set to "URL" in Airtable
 
+**Issue**: Validation errors from quality_book_scraper.py
+- **Solution**: Check the script's validation rules and fix data format
+
 **Issue**: Duplicate books
 - **Solution**: Use Airtable's duplicate detection or manually review
-
-**Issue**: Special characters in text
-- **Solution**: CSV files use UTF-8 encoding, should display correctly
-
----
-
-## ✅ Post-Import Checklist
-
-- [ ] All 200 books imported successfully
-- [ ] Field mapping correct
-- [ ] Multiple select options created
-- [ ] URLs working (Amazon links, cover images)
-- [ ] Filtering working (by difficulty, tags, industry)
-- [ ] No duplicate entries
-- [ ] Test quiz flow with new data
-
----
-
-## 🎉 Success!
-
-Once imported, your Airtable base will have:
-- **200+ high-quality PM books**
-- **Comprehensive metadata** for hybrid matching
-- **Diverse difficulty levels** for different experience levels
-- **Industry-specific books** for various domains
-- **Technical and non-technical** content balance
-
-Your PM Book Recommender will now have a rich dataset for the hybrid matching algorithm to work with!
 
 ---
 
 ## 📞 Need Help?
 
-If you encounter any issues during import:
+If you encounter any issues:
 1. Check the troubleshooting section above
 2. Verify your Airtable field types match the specifications
-3. Ensure CSV encoding is UTF-8
-4. Test with a small batch first before importing all 200 books 
+3. Run the quality_book_scraper.py validation
+4. Test with a small dataset first
+
+---
+
+## 📸 TODO: Add Book Cover Images
+
+Cover images are currently not included in the database due to unstable external image hosting (Amazon and Goodreads block hotlinking).
+
+### Manual Approach
+
+To populate the `cover_image` field reliably:
+
+1. After the book list is finalized, download cover images manually or with a script using Amazon or Goodreads links.
+2. Save each image with a consistent filename, like `inspired.jpg` or a slugified version of the book title.
+3. Upload all images to a stable hosting provider (e.g., Cloudinary, Imgur, or S3).
+4. Construct the full URL for each image (e.g., `https://res.cloudinary.com/yourname/image/upload/v1/inspired.jpg`).
+5. Update the `cover_image` field in Airtable by matching filenames to book titles. This can be automated using a script or done via CSV import.
+
+### ⚙️ Alternative (Preferred) Approach: Automate Cover Images via Google Books API
+
+To avoid manual image uploads and unreliable external URLs, you can automate population of the `cover_image` field using the Google Books API.
+
+#### ✅ Steps:
+
+1. Ensure each book record includes an `isbn_13` field.
+2. Use the following API query:
+   https://www.googleapis.com/books/v1/volumes?q=isbn:<isbn_13>
+3. From the response, extract:
+   - `volumeInfo.imageLinks.thumbnail` → store in `cover_image`
+4. These URLs are stable, public, and suitable for Airtable or app usage.
+
+> If ISBN is not available, fallback search using title + author is possible, but may introduce noise.
+
+#### 🚀 Post-MVP Enhancement
+
+This same enrichment process can be extended to populate:
+- `isbn_13` (if missing)
+- `averageRating` and `ratingsCount`
+- Fallback `summary` from `description`
+
+This creates a robust, scalable enrichment pipeline with minimal manual effort.
+
+---
+
+Note: This step is optional and can be deferred until final review or post-MVP.
+
+---
+
+## 🎉 Success!
+
+Once set up, your Airtable base will be ready to receive:
+- **High-quality PM books** from trusted sources
+- **Schema-validated data** ensuring consistency
+- **Comprehensive metadata** for hybrid matching
+- **Diverse difficulty levels** for different experience levels
+- **Industry-specific books** for various domains
+
+Your PM Book Recommender will have a robust, scalable data pipeline! 

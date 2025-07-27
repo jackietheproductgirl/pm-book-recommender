@@ -1,0 +1,266 @@
+UPDATED PM/BUSINESS RELEVANT BOOK RECOMMENDATIONS
+================================================
+
+Total Books: 85 (49 from Lenny's Podcast + 36 manually added)
+
+FROM LENNY'S PODCAST:
+====================
+
+   1. The Design of Everyday Things
+     by Don Norman
+     (Recommended 5 times)
+
+   2. The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers
+     by Ben Horowitz
+     (Recommended 4 times)
+
+   3. Thinking in Systems
+     by Donella H. Meadows
+     (Recommended 4 times)
+
+   4. Commitments of Conscious Leadership: A New Paradigm for Sustainable Success
+     by Jim Dethmer, Diana Chapman, Kaley Klemp
+     (Recommended 15 times)
+
+   5. Thinking, Fast and Slow
+     by Daniel Kahneman
+     (Recommended 3 times)
+
+   6. Scaling People: Tactics for Management and Company Building
+     by Claire Hughes Johnson
+     (Recommended 3 times)
+
+   7. Influence: The Psychology of Persuasion
+     by Robert B. Cialdini
+     (Recommended 3 times)
+
+   8. The Goal: A Process of Ongoing Improvement
+     by Eliyahu M Goldratt, Jeff Cox
+     (Recommended 3 times)
+
+   9. Replacing Guilt: Minding Our Way
+     by Nate Soares
+
+  10. Good Strategy Bad Strategy: The Difference and Why It Matters
+     by Richard Rumelt
+
+  11. The Alignment Problem: Machine Learning and Human Values
+     by Brian Christian
+
+  12. High Output Management
+     by Andrew S. Grove
+
+  13. Qureshi High Output Management
+     by Andrew S. Grove
+
+  14. The Power Law: Venture Capital and the Making of the New Future
+     by Sebastian Mallaby
+
+  15. Flow: The Psychology of Optimal Experience
+     by Mihaly Csikszentmihalyi
+
+  16. Creativity, Inc.: Overcoming the Unseen Forces That Stand in the Way of True Inspiration
+     by Ed Catmull, Amy Wallace
+
+  17. The Ten Faces of Innovation: IDEO's Strategies for Beating the Devil's Advocate and Driving Creativity Throughout Your Organization
+     by Tom Kelley, Jonathan Littman
+
+  18. Don't Believe Everything You Think (Expanded Edition): Why Your Thinking Is The Beginning & End Of Suffering
+     by Joseph Nguyen
+
+  19. The Ideal Executive
+     by Ichak Kalderon Adizes
+
+  20. The Undoing Project: A Friendship That Changed Our Minds
+     by Michael Lewis
+
+  21. Setting the Table: The Transforming Power of Hospitality in Business
+     by Danny Meyer
+
+  22. Scientific Advertising: Original Classic Edition
+     by Claude Hopkins
+
+  23. The Creative Act: A Way of Being
+     by Rick Rubin
+
+  24. Inside Paragraphs: Typographic Fundamentals
+     by Cyrus Highsmith
+
+  25. The Origin of Wealth: The Radical Remaking of Economics and What it Means for Business and Society
+     by Eric D. Beinhocker
+
+  26. Misbehaving: The Making of Behavioral Economics
+     by Richard H. Thaler
+
+  27. Small Data: The Tiny Clues That Uncover Huge Trends
+     by Martin Lindstrom
+
+  28. What Got You Here Won't Get You There: How Successful People Become Even More Successful
+     by Marshall Goldsmith, Mark Reiter
+
+  29. Mindset: The New Psychology of Success
+     by Carol S. Dweck
+
+  30. The Conversation: How Seeking and Speaking the Truth About Racism Can Radically Transform Individuals and Organizations
+     by Robert Livingston
+
+  31. The Person and the Situation: Perspectives of Social Psychology
+     by Lee Ross, Richard E. Nisbett
+
+  32. Deep Work: Rules for Focused Success in a Distracted World
+     by Cal Newport
+
+  33. The Mission Critical Core/Context Model For Product Managers
+     by Nils Davis
+
+  34. Creating Intelligent Teams
+     by Anne Fridjhon, Marita Rød
+
+  35. Good Strategy/Bad Strategy: The difference and why it matters
+     by Richard Rumelt
+
+  36. Bad Leadership: What It Is, How It Happens, Why It Matters
+     by Barbara Kellerman
+
+  37. The Five Temptations of a CEO: A Leadership Fable
+     by Patrick Lencioni
+
+  38. The Five Dysfunctions of a Team: A Leadership Fable
+     by Patrick Lencioni
+
+  39. How Brands Grow: What Marketers Don't Know
+     by Byron Sharp
+
+  40. Escaping the Build Trap: How Effective Product Management Creates Real Value
+     by Melissa Perri
+
+  41. The Practice of Management
+     by Peter F. Drucker
+
+  42. The Challenger Sale: Taking Control of the Customer Conversation
+     by Matthew Dixon
+
+  43. The Design of Everyday Things
+     by Donald A. Norman
+
+  44. Good Strategy/Bad Strategy: The Difference and Why It Matters
+     by Richard P. Rumelt
+
+  45. Leadership: In Turbulent Times
+     by Doris Kearns Goodwin
+
+  46. Thinking in Systems
+     by Donella Meadows, Diana Wright
+
+  47. Leadership and Self-Deception: Getting Out of the Box
+     by The Arbinger Institute
+
+  48. Scaling People: Tactics for Management and Company building
+     by Claire Hughes Johnson
+
+  49. Amp It Up: Leading for Hypergrowth by Raising Expectations, Increasing Urgency, and Elevating Intensity
+     by Frank Slootman
+
+MANUALLY ADDED BOOKS:
+====================
+
+  50. Inspired: How to Create Tech Products Customers Love
+     by Marty Cagan
+
+  51. Empowered: Ordinary People, Extraordinary Products
+     by Marty Cagan
+
+  52. Continuous Discovery Habits
+     by Teresa Torres
+
+  53. Lean Product and Lean Analytics
+     by Ben Yoskovitz & Alistair Croll
+
+  54. The Lean Startup
+     by Eric Ries
+
+  55. The Four Steps to the Epiphany
+     by Steve Blank
+
+  56. Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days
+     by Jake Knapp
+
+  57. Hooked: How to Build Habit-Forming Products
+     by Nir Eyal
+
+  58. The Mom Test
+     by Rob Fitzpatrick
+
+  59. Build: An Unorthodox Guide to Making Things Worth Making
+     by Tony Fadell
+
+  60. Measure What Matters
+     by John Doerr
+
+  61. Play Bigger
+     by Al Ramadan, Dave Peterson, Christopher Lochhead, Kevin Maney
+
+  62. Blue Ocean Strategy
+     by W. Chan Kim & Renée Mauborgne
+
+  63. Crossing the Chasm
+     by Geoffrey A. Moore
+
+  64. Product-Led Growth
+     by Wes Bush
+
+  65. Obviously Awesome
+     by April Dunford
+
+  66. Working Backwards
+     by Colin Bryar & Bill Carr
+
+  67. Loonshots
+     by Safi Bahcall
+
+  68. The Innovator's Dilemma
+     by Clayton Christensen
+
+  69. The Jobs To Be Done Playbook
+     by Jim Kalbach
+
+  70. Lean UX
+     by Jeff Gothelf
+
+  71. Thinking in Bets
+     by Annie Duke
+
+  72. Design Sprint
+     by Jake Knapp
+
+  73. Interviewing Users
+     by Steve Portigal
+
+  74. This is Service Design Doing
+     by Stickdorn, Lawrence, Hormess, Schneider
+
+  75. The Manager's Path
+     by Camille Fournier
+
+  76. A Philosophy of Software Design
+     by John Ousterhout
+
+  77. System Design Interview: An Insider's Guide
+     by Alex Xu
+
+BOOKS REMOVED:
+==============
+- Spark: The Revolutionary New Science of Exercise and the Brain – John J. Ratey
+- Cambridge Fundamentals of Neuroscience in Psychology – Various Authors
+- The Experience Machine: How Our Minds Predict and Shape Reality – Andy Clark
+- The Master and His Emissary – Iain McGilchrist
+- Resilience – Eric Greitens
+- Recapture the Rapture: Rethinking God, Sex, and Death in a World That's Lost Its Mind – Jamie Wheal
+- Quiet – Erich Maria Remarque
+
+SUMMARY:
+========
+- Original filtered list: 56 books
+- Books removed: 7 books
+- Books added: 36 books
+- Final updated list: 85 books 
