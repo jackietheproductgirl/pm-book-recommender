@@ -119,6 +119,7 @@ export function QuizProvider({ children }: { children: ReactNode }) {
       });
 
       // Call the API
+      console.log('Calling API with answers:', quizAnswers);
       const response = await fetch('/api/recommendations', {
         method: 'POST',
         headers: {
@@ -127,21 +128,28 @@ export function QuizProvider({ children }: { children: ReactNode }) {
         body: JSON.stringify({ answers: quizAnswers }),
       });
 
+      console.log('API response status:', response.status);
+
       if (!response.ok) {
         throw new Error('Failed to get recommendations');
       }
 
       const data = await response.json();
+      console.log('API response data:', data);
+      console.log('Recommendations received:', data.recommendations?.length || 0);
+      
+      dispatch({ type: 'SET_LOADING', payload: false });
       dispatch({ type: 'SET_RECOMMENDATIONS', payload: data.recommendations });
       dispatch({ type: 'COMPLETE_QUIZ' });
+      
+      console.log('State updates completed - recommendations should now be visible');
     } catch (error) {
       console.error('Error completing quiz:', error);
       // Fallback to mock data
       const { mockRecommendations } = await import('@/data/mockRecommendations');
+      dispatch({ type: 'SET_LOADING', payload: false });
       dispatch({ type: 'SET_RECOMMENDATIONS', payload: mockRecommendations });
       dispatch({ type: 'COMPLETE_QUIZ' });
-    } finally {
-      dispatch({ type: 'SET_LOADING', payload: false });
     }
   };
 
