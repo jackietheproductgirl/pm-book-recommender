@@ -9,7 +9,17 @@
     "The Mom Test": "https://images-na.ssl-images-amazon.com/images/P/1492180742.01.L.jpg",
     "Interviewing Users": "https://images-na.ssl-images-amazon.com/images/P/193382011X.01.L.jpg",
     "Continuous Discovery Habits": "https://images-na.ssl-images-amazon.com/images/P/1736633309.01.L.jpg",
-    "Empowered: Ordinary People, Extraordinary Products": "https://images-na.ssl-images-amazon.com/images/P/111969129X.01.L.jpg"
+    "Empowered: Ordinary People, Extraordinary Products": "https://images-na.ssl-images-amazon.com/images/P/111969129X.01.L.jpg",
+    "Think Like a UX Researcher": "https://images-na.ssl-images-amazon.com/images/P/1138360595.01.L.jpg",
+    "Small Data: The Tiny Clues That Uncover Huge Trends": "https://images-na.ssl-images-amazon.com/images/P/1250080686.01.L.jpg",
+    "The Jobs To Be Done Playbook": "https://images-na.ssl-images-amazon.com/images/P/0990476302.01.L.jpg",
+    "Deep Work: Rules for Focused Success in a Distracted World": "https://images-na.ssl-images-amazon.com/images/P/1455586692.01.L.jpg",
+    "Mindset: The New Psychology of Success": "https://images-na.ssl-images-amazon.com/images/P/0345472322.01.L.jpg",
+    "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers": "https://images-na.ssl-images-amazon.com/images/P/0062273205.01.L.jpg",
+    "Radical Candor: Be a Kick-Ass Boss Without Losing Your Humanity": "https://images-na.ssl-images-amazon.com/images/P/1250103509.01.L.jpg",
+    "The Innovator's Dilemma: When New Technologies Cause Great Firms to Fail": "https://images-na.ssl-images-amazon.com/images/P/1633691784.01.L.jpg",
+    "Product-Led Growth: How to Build a Product That Sells Itself": "https://images-na.ssl-images-amazon.com/images/P/1736096802.01.L.jpg",
+    "Flow: The Psychology of Optimal Experience": "https://images-na.ssl-images-amazon.com/images/P/0061339202.01.L.jpg"
   },
   "instructions": {
     "how_to_add": "Add book titles as keys and verified cover image URLs as values. Use high-quality image URLs from Amazon, Goodreads, or other reliable sources.",
