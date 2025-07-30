@@ -58,7 +58,7 @@ export async function getGPTRecommendations(
 
 function createRecommendationPrompt(books: BookRecommendation[], answers: QuizAnswers): string {
   const bookList = books.map(book => 
-    `- "${book.title}" by ${book.author} (Rating: ${book.goodreadsRating}/5, Tags: ${book.tags || 'none'})`
+    `- "${book.title}" by ${book.author} (ID: ${book.id}, Rating: ${book.goodreadsRating}/5, Tags: ${book.tags || 'none'}, Difficulty: ${book.difficultyLevel || 'unknown'}, Industry: ${book.industryFocus || 'general'}, Style: ${book.learningStyle || 'general'})`
   ).join('\n');
 
   return `
@@ -76,19 +76,25 @@ ${bookList}
 Please:
 1. Select the top 5 most relevant books for this user
 2. Rank them from most to least relevant
-3. Provide a personalized explanation for each book (1-2 sentences) explaining why it's perfect for their specific situation
-4. Return your response in this exact JSON format:
+3. Provide a unique, personalized explanation for each book (2-3 sentences) explaining why it's perfect for their specific situation
+4. Make each explanation different and specific to the book's content and the user's profile
+5. Return your response in this exact JSON format:
 
 {
   "recommendations": [
     {
-      "bookId": "1",
+      "bookId": "rec1iCSA8XOuC3TV8",
       "personalizedExplanation": "This book is perfect for you because..."
     }
   ]
 }
 
-Focus on matching their experience level, learning goals, industry focus, and preferred learning style. Be encouraging and specific about why each book will help them in their product management journey.
+IMPORTANT: 
+- Use the exact book IDs provided (like "rec1iCSA8XOuC3TV8")
+- Make each explanation unique and specific to the book's content
+- Consider their experience level, learning goals, industry focus, and learning style
+- Be encouraging and specific about how each book will help their PM journey
+- Focus on practical benefits and real-world applications
 `;
 }
 
@@ -103,19 +109,29 @@ function parseGPTResponse(books: BookRecommendation[], gptResponse: string): Boo
     const parsed = JSON.parse(jsonMatch[0]);
     const recommendations = parsed.recommendations || [];
 
-    // Map GPT recommendations back to book objects
-    return recommendations
-      .map((rec: any) => {
-        const book = books.find(b => b.id === rec.bookId);
-        if (!book) return null;
+    console.log('GPT response parsed:', parsed);
+    console.log('Found recommendations:', recommendations.length);
 
+    // Map GPT recommendations back to book objects
+    const mappedBooks = recommendations
+      .map((rec: any) => {
+        console.log('Looking for book with ID:', rec.bookId);
+        const book = books.find(b => b.id === rec.bookId);
+        if (!book) {
+          console.log('Book not found for ID:', rec.bookId);
+          return null;
+        }
+
+        console.log('Found book:', book.title, 'with explanation:', rec.personalizedExplanation);
         return {
           ...book,
           personalizedExplanation: rec.personalizedExplanation || book.personalizedExplanation,
         };
       })
-      .filter(Boolean)
-      .slice(0, 5); // Ensure we only return top 5
+      .filter(Boolean);
+
+    console.log('Successfully mapped books:', mappedBooks.length);
+    return mappedBooks.slice(0, 5); // Ensure we only return top 5
   } catch (error) {
     console.error('Error parsing GPT response:', error);
     console.log('Raw GPT response:', gptResponse);
@@ -144,19 +160,20 @@ export async function getMockGPTRecommendations(
 
 function generatePersonalizedExplanation(book: BookRecommendation, answers: QuizAnswers): string {
   const explanations: Record<string, string> = {
-    'fundamentals': 'Perfect for building a solid foundation in product management principles and best practices.',
-    'technical': 'Great for developing technical skills and understanding the engineering side of product development.',
+    'ux_design': 'Perfect for developing design thinking and user experience skills.',
     'leadership': 'Excellent for developing leadership skills and learning how to manage teams and stakeholders.',
+    'data_analytics': 'Great for developing data-driven decision making and analytical skills.',
     'strategy': 'Ideal for learning strategic thinking and long-term product vision.',
-    'research': 'Perfect for mastering user research and data-driven decision making.',
+    'discovery_research': 'Perfect for mastering user research and data-driven decision making.',
+    'go_to_market': 'Excellent for learning go-to-market strategies and product launch.',
   };
 
-  const baseExplanation = explanations[answers.goals] || 'A valuable resource for your product management journey.';
+  const baseExplanation = explanations[answers.primaryFocus] || 'A valuable resource for your product management journey.';
   
   const experienceContext: Record<string, string> = {
     'beginner': 'As someone new to product management, ',
-    'intermediate': 'With your growing experience, ',
-    'advanced': 'Given your advanced level, ',
+    'junior': 'With your growing experience, ',
+    'senior': 'Given your advanced level, ',
   };
 
   const prefix = experienceContext[answers.experience] || '';

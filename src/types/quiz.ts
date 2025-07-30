@@ -1,9 +1,12 @@
 export interface QuizAnswers {
   experience: string;
-  goals: string;
-  industry: string;
+  primaryFocus: string;
+  businessModel: string;
   learningStyle: string;
-  [key: string]: string;
+  careerStage: string;
+  secondarySkills: string[];
+  currentChallenges: string[];
+  [key: string]: string | string[];
 }
 
 export interface QuizQuestion {
@@ -14,13 +17,15 @@ export interface QuizQuestion {
     text: string;
     value: string;
   }[];
+  type: 'single' | 'multi';
+  maxSelections?: number;
 }
 
 export interface QuizState {
   currentQuestionIndex: number;
   answers: Array<{
     questionId: string;
-    answer: string;
+    answer: string | string[];
   }>;
   isComplete: boolean;
   isLoading: boolean;

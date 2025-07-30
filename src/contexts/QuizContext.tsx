@@ -51,7 +51,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
     case 'NEXT_QUESTION':
       return {
         ...state,
-        currentQuestionIndex: Math.min(state.currentQuestionIndex + 1, 4), // 5 questions total
+        currentQuestionIndex: Math.min(state.currentQuestionIndex + 1, 6), // 7 questions total
       };
 
     case 'PREVIOUS_QUESTION':
@@ -104,18 +104,23 @@ export function QuizProvider({ children }: { children: ReactNode }) {
       // Convert answers to the format expected by the API
       const quizAnswers: QuizAnswers = {
         experience: '',
-        goals: '',
-        industry: '',
+        primaryFocus: '',
+        businessModel: '',
         learningStyle: '',
+        careerStage: '',
+        secondarySkills: [],
+        currentChallenges: [],
       };
 
       state.answers.forEach(answer => {
         const question = answer.questionId;
-        if (question === 'experience') quizAnswers.experience = answer.answer;
-        else if (question === 'goals') quizAnswers.goals = answer.answer;
-        else if (question === 'industry') quizAnswers.industry = answer.answer;
-        else if (question === 'style') quizAnswers.learningStyle = answer.answer;
-        else if (question === 'focus') quizAnswers.goals = answer.answer; // Use focus as additional goals
+        if (question === 'experience') quizAnswers.experience = answer.answer as string;
+        else if (question === 'primaryFocus') quizAnswers.primaryFocus = answer.answer as string;
+        else if (question === 'businessModel') quizAnswers.businessModel = answer.answer as string;
+        else if (question === 'learningStyle') quizAnswers.learningStyle = answer.answer as string;
+        else if (question === 'careerStage') quizAnswers.careerStage = answer.answer as string;
+        else if (question === 'secondarySkills') quizAnswers.secondarySkills = answer.answer as string[];
+        else if (question === 'currentChallenges') quizAnswers.currentChallenges = answer.answer as string[];
       });
 
       // Call the API

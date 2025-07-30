@@ -12,7 +12,7 @@ export default function Quiz() {
   const currentQuestion = quizQuestions[state.currentQuestionIndex];
   const totalQuestions = quizQuestions.length;
 
-  const handleAnswerSelect = (answer: string) => {
+  const handleAnswerSelect = (answer: string | string[]) => {
     dispatch({
       type: 'ANSWER_QUESTION',
       payload: {
@@ -38,6 +38,17 @@ export default function Quiz() {
     answer => answer.questionId === currentQuestion.id
   );
 
+  // Check if current question is answered (for both single and multi-select)
+  const isQuestionAnswered = () => {
+    if (!currentAnswer) return false;
+    
+    if (currentQuestion.type === 'single') {
+      return typeof currentAnswer.answer === 'string' && currentAnswer.answer.length > 0;
+    } else {
+      return Array.isArray(currentAnswer.answer) && currentAnswer.answer.length > 0;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
       <div className={`mx-auto ${!state.isComplete ? 'max-w-md' : 'max-w-2xl'}`}>
@@ -50,8 +61,6 @@ export default function Quiz() {
             Let's discover the perfect books for your product management journey
           </p>
         </div>
-
-
 
         {/* Show Quiz OR Recommendations, not both */}
         {!state.isComplete ? (
@@ -87,9 +96,9 @@ export default function Quiz() {
 
               <button
                 onClick={handleNext}
-                disabled={!currentAnswer}
+                disabled={!isQuestionAnswered()}
                 className={`px-8 py-3 rounded-lg font-medium transition-colors ${
-                  !currentAnswer
+                  !isQuestionAnswered()
                     ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
                     : 'text-white bg-blue-600 hover:bg-blue-700 shadow-sm'
                 }`}
