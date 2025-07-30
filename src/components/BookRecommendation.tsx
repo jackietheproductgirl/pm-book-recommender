@@ -77,14 +77,19 @@ export default function BookRecommendation({ book, index }: BookRecommendationPr
               src={book.coverImage}
               alt={`Cover of ${book.title}`}
               className="w-24 h-32 object-cover rounded-xl shadow-lg"
+              onError={(e) => {
+                // Fallback to placeholder if image fails to load
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.nextElementSibling?.classList.remove('hidden');
+              }}
             />
-          ) : (
-            <div className="w-24 h-32 bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl flex items-center justify-center shadow-lg">
-              <svg className="w-10 h-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-          )}
+          ) : null}
+          <div className={`w-24 h-32 bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl flex items-center justify-center shadow-lg ${book.coverImage ? 'hidden' : ''}`}>
+            <svg className="w-10 h-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
         </div>
 
         {/* Book Details */}

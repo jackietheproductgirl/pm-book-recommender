@@ -1,0 +1,24 @@
+{
+  "manual_covers": {
+    "The Design of Everyday Things: Revised and Expanded Edition": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328831036i/840.jpg",
+    "Thinking, Fast and Slow": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348990566i/3243588.jpg",
+    "Influence: The Psychology of Persuasion": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1373639343i/18528861.jpg",
+    "The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1431451785i/25587484.jpg",
+    "Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1451447476i/25814544.jpg",
+    "Hooked: How to Build Habit-Forming Products": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1407123964i/22668729.jpg",
+    "The Mom Test": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1373639343i/18528861.jpg",
+    "Interviewing Users": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328831036i/840.jpg",
+    "Continuous Discovery Habits": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1553273605i/44770129.jpg",
+    "Empowered: Ordinary People, Extraordinary Products": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328831036i/840.jpg"
+  },
+  "instructions": {
+    "how_to_add": "Add book titles as keys and verified cover image URLs as values. Use high-quality image URLs from Amazon, Goodreads, or other reliable sources.",
+    "format": "Book Title: \"https://image-url-here.com/image.jpg\"",
+    "recommended_sources": [
+      "Amazon product images",
+      "Goodreads book covers", 
+      "Publisher websites",
+      "Author websites"
+    ]
+  }
+} 

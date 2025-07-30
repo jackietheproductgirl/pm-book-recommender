@@ -38,6 +38,68 @@ async function getMockAirtableData(): Promise<BookRecommendation[]> {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 500));
   
+  // Import the complete 75 books data
+  const fs = require('fs');
+  const csv = require('csv-parser');
+  const path = require('path');
+  
+  try {
+    const csvPath = path.join(process.cwd(), 'complete-75-books-clean.csv');
+    if (fs.existsSync(csvPath)) {
+      return new Promise((resolve, reject) => {
+        const books: BookRecommendation[] = [];
+        
+        // Load manual covers if available
+        let manualCovers: Record<string, string> = {};
+        try {
+          const manualCoversPath = path.join(process.cwd(), 'manual-covers.json');
+          if (fs.existsSync(manualCoversPath)) {
+            const manualCoversData = JSON.parse(fs.readFileSync(manualCoversPath, 'utf8'));
+            manualCovers = manualCoversData.manual_covers || {};
+            console.log(`Loaded ${Object.keys(manualCovers).length} manual cover images`);
+          }
+        } catch (error) {
+          console.warn('Could not load manual covers:', error);
+        }
+        
+        fs.createReadStream(csvPath)
+          .pipe(csv())
+          .on('data', (row: any) => {
+            // Check if we have a manual cover for this book
+            const manualCover = manualCovers[row.title];
+            
+            books.push({
+              id: row.id,
+              title: row.title,
+              author: row.author,
+              summary: row.summary,
+              goodreadsRating: parseFloat(row.goodreads_rating) || 4.0,
+              amazonLink: row.amazon_link,
+              coverImage: manualCover || row.cover_image || undefined,
+              personalizedExplanation: row.personalized_explanation,
+              tags: row.tags,
+              difficultyLevel: row.difficulty_level,
+              industryFocus: row.industry_focus,
+              learningStyle: row.learning_style
+            });
+          })
+          .on('end', () => {
+            console.log(`Loaded ${books.length} books from complete database`);
+            resolve(books);
+          })
+          .on('error', reject);
+      });
+    } else {
+      console.warn('Complete database CSV not found, using fallback data');
+      return getFallbackData();
+    }
+  } catch (error) {
+    console.error('Error loading complete database:', error);
+    return getFallbackData();
+  }
+}
+
+function getFallbackData(): BookRecommendation[] {
   return [
     {
       id: '1',
@@ -63,90 +125,6 @@ async function getMockAirtableData(): Promise<BookRecommendation[]> {
       coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1431451785i/25587484.jpg',
       personalizedExplanation: 'Great for learning practical, hands-on approaches to product development and validation.',
       tags: 'lean, validation, practical, product development',
-      difficultyLevel: 'intermediate',
-      industryFocus: 'general',
-      learningStyle: 'practical'
-    },
-    {
-      id: '3',
-      title: 'Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days',
-      author: 'Jake Knapp',
-      summary: 'A step-by-step guide to running design sprints for rapid product innovation.',
-      goodreadsRating: 4.2,
-      amazonLink: 'https://amazon.com/sprint',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1451447476i/25814544.jpg',
-      personalizedExplanation: 'Excellent for learning rapid prototyping and problem-solving techniques.',
-      tags: 'design sprint, innovation, rapid prototyping',
-      difficultyLevel: 'intermediate',
-      industryFocus: 'general',
-      learningStyle: 'practical'
-    },
-    {
-      id: '4',
-      title: 'Product-Led Growth: How to Build a Product That Sells Itself',
-      author: 'Wes Bush',
-      summary: 'A comprehensive guide to building products that drive their own growth through user experience.',
-      goodreadsRating: 4.5,
-      amazonLink: 'https://amazon.com/product-led-growth',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1553273605i/44770129.jpg',
-      personalizedExplanation: 'Perfect for understanding modern growth strategies and product-led business models.',
-      tags: 'growth, product-led, strategy, saas',
-      difficultyLevel: 'intermediate',
-      industryFocus: 'saas',
-      learningStyle: 'theoretical'
-    },
-    {
-      id: '5',
-      title: 'The Mom Test: How to talk to customers & learn if your business is a good idea when everyone is lying to you',
-      author: 'Rob Fitzpatrick',
-      summary: 'A practical guide to customer development and getting honest feedback from potential customers.',
-      goodreadsRating: 4.3,
-      amazonLink: 'https://amazon.com/mom-test',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1373639343i/18528861.jpg',
-      personalizedExplanation: 'Essential for learning how to conduct effective customer interviews and validation.',
-      tags: 'customer development, interviews, validation, research',
-      difficultyLevel: 'beginner',
-      industryFocus: 'general',
-      learningStyle: 'practical'
-    },
-    {
-      id: '6',
-      title: 'Hooked: How to Build Habit-Forming Products',
-      author: 'Nir Eyal',
-      summary: 'A guide to building products that create user habits and drive engagement.',
-      goodreadsRating: 4.1,
-      amazonLink: 'https://amazon.com/hooked',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1407123964i/22668729.jpg',
-      personalizedExplanation: 'Great for understanding user psychology and building engaging products.',
-      tags: 'psychology, engagement, habits, user behavior',
-      difficultyLevel: 'intermediate',
-      industryFocus: 'b2c',
-      learningStyle: 'theoretical'
-    },
-    {
-      id: '7',
-      title: 'The Design of Everyday Things',
-      author: 'Don Norman',
-      summary: 'A foundational book on design thinking and user experience principles.',
-      goodreadsRating: 4.2,
-      amazonLink: 'https://amazon.com/design-everyday-things',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328831036i/840.jpg',
-      personalizedExplanation: 'Essential for understanding design principles and user-centered thinking.',
-      tags: 'design, ux, user experience, design thinking',
-      difficultyLevel: 'beginner',
-      industryFocus: 'general',
-      learningStyle: 'theoretical'
-    },
-    {
-      id: '8',
-      title: 'Measure What Matters',
-      author: 'John Doerr',
-      summary: 'A guide to OKRs (Objectives and Key Results) for goal setting and measurement.',
-      goodreadsRating: 4.0,
-      amazonLink: 'https://amazon.com/measure-what-matters',
-      coverImage: 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1527005719i/39286958.jpg',
-      personalizedExplanation: 'Perfect for learning how to set and measure goals effectively.',
-      tags: 'okrs, goals, measurement, strategy',
       difficultyLevel: 'intermediate',
       industryFocus: 'general',
       learningStyle: 'practical'
