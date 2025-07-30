@@ -9,6 +9,10 @@ interface BookRecommendationProps {
 }
 
 export default function BookRecommendation({ book, index }: BookRecommendationProps) {
+  // TODO: RATING STARS - Temporarily commented out for simplified UI
+  // Consider re-enabling if you want to show book ratings/credibility
+  // This could be useful for: user trust, book quality indication, or A/B testing
+  /*
   const renderStars = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -47,6 +51,7 @@ export default function BookRecommendation({ book, index }: BookRecommendationPr
 
     return stars;
   };
+  */
 
   return (
     <div className="bg-white rounded-3xl shadow-xl p-8 mb-6 border border-gray-100 hover:shadow-2xl transition-all duration-300">
@@ -55,10 +60,12 @@ export default function BookRecommendation({ book, index }: BookRecommendationPr
         <div className="bg-gradient-to-r from-brand-100 to-brand-200 text-brand-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
           Recommendation #{index + 1}
         </div>
+        {/* TODO: RATING STARS - Temporarily commented out for simplified UI
         <div className="flex items-center space-x-1">
           {renderStars(book.goodreadsRating)}
           <span className="text-sm text-gray-600 ml-2 font-medium">({book.goodreadsRating})</span>
         </div>
+        */}
       </div>
 
       {/* Book Content */}
@@ -82,11 +89,11 @@ export default function BookRecommendation({ book, index }: BookRecommendationPr
 
         {/* Book Details */}
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
+          <h3 className="text-xl font-bold text-gray-900 mb-2">
             {book.title}
           </h3>
           <p className="text-gray-600 mb-3 font-medium">by {book.author}</p>
-          <p className="text-gray-700 text-base mb-4 line-clamp-2 leading-relaxed">
+          <p className="text-gray-700 text-base mb-4 leading-relaxed">
             {book.summary}
           </p>
           
@@ -104,12 +111,16 @@ export default function BookRecommendation({ book, index }: BookRecommendationPr
             </div>
           )}
           
-          {/* Personalized Explanation */}
+          {/* TODO: PERSONALIZED EXPLANATION - Temporarily commented out for simplified UI
           <div className="bg-gradient-to-r from-brand-50 to-brand-100 border-l-4 border-brand-500 p-4 mb-6 rounded-r-lg">
             <p className="text-brand-900">
               <span className="font-semibold">Why this book for you:</span> {book.personalizedExplanation}
             </p>
           </div>
+          */}
+
+          {/* Divider Line */}
+          <div className="border-t border-gray-200 my-4"></div>
 
           {/* Amazon Link */}
           <a
