@@ -52,7 +52,7 @@ export default function BookRecommendation({ book, index }: BookRecommendationPr
     <div className="bg-white rounded-3xl shadow-xl p-8 mb-6 border border-gray-100 hover:shadow-2xl transition-all duration-300">
       {/* Book Number Badge */}
       <div className="flex items-center justify-between mb-6">
-        <div className="bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
+        <div className="bg-gradient-to-r from-brand-100 to-brand-200 text-brand-800 px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
           Recommendation #{index + 1}
         </div>
         <div className="flex items-center space-x-1">
@@ -90,9 +90,23 @@ export default function BookRecommendation({ book, index }: BookRecommendationPr
             {book.summary}
           </p>
           
+          {/* Tags */}
+          {book.tags && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {book.tags.split(', ').map((tag, tagIndex) => (
+                <span
+                  key={tagIndex}
+                  className="px-3 py-1 bg-gradient-to-r from-brand-100 to-brand-200 text-brand-800 text-xs font-medium rounded-full border border-brand-200"
+                >
+                  {tag.trim()}
+                </span>
+              ))}
+            </div>
+          )}
+          
           {/* Personalized Explanation */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
-            <p className="text-blue-900">
+          <div className="bg-gradient-to-r from-brand-50 to-brand-100 border-l-4 border-brand-500 p-4 mb-6 rounded-r-lg">
+            <p className="text-brand-900">
               <span className="font-semibold">Why this book for you:</span> {book.personalizedExplanation}
             </p>
           </div>
@@ -109,7 +123,11 @@ export default function BookRecommendation({ book, index }: BookRecommendationPr
             </svg>
             View on Amazon
           </a>
+
+
         </div>
+
+
       </div>
     </div>
   );

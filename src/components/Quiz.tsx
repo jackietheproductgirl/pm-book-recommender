@@ -50,17 +50,19 @@ export default function Quiz() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-brand-50 to-brand-100 py-8 px-4">
       <div className={`mx-auto ${!state.isComplete ? 'max-w-md' : 'max-w-2xl'}`}>
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Find Your Next PM Book
-          </h1>
-          <p className="text-gray-600">
-            Let's discover the perfect books for your product management journey
-          </p>
-        </div>
+        {/* Header - Only show on quiz, not on results */}
+        {!state.isComplete && (
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Find Your Next PM Book
+            </h1>
+            <p className="text-gray-600">
+              Let's discover the perfect books for your product management journey
+            </p>
+          </div>
+        )}
 
         {/* Show Quiz OR Recommendations, not both */}
         {!state.isComplete ? (
@@ -100,7 +102,7 @@ export default function Quiz() {
                 className={`px-8 py-3 rounded-lg font-medium transition-colors ${
                   !isQuestionAnswered()
                     ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
-                    : 'text-white bg-blue-600 hover:bg-blue-700 shadow-sm'
+                    : 'text-white bg-brand-600 hover:bg-brand-700 shadow-sm'
                 }`}
               >
                 {state.currentQuestionIndex === totalQuestions - 1 ? 'Get Recommendations' : 'Next'}
@@ -112,7 +114,7 @@ export default function Quiz() {
             {/* Loading State */}
             {state.isLoading && (
               <div className="mt-8 text-center">
-                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-brand-600"></div>
                 <p className="mt-2 text-gray-600">Finding your perfect books...</p>
               </div>
             )}
@@ -121,11 +123,23 @@ export default function Quiz() {
             {state.recommendations.length > 0 && (
               <div className="mt-8">
                 <div className="text-center mb-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  {/* Success Checkmark */}
+                  <div className="flex justify-center mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-lg">
+                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  <h2 className="text-3xl font-bold text-gray-900 mb-3">
                     Your Personalized Book Recommendations
                   </h2>
+                  <p className="text-lg text-gray-700 mb-2">
+                    Based on your answers, here are the top 5 books to accelerate your product management journey 🚀
+                  </p>
                   <p className="text-gray-600">
-                    Based on your answers, here are the perfect books for your PM journey
+                    Each recommendation is tailored to your experience level and learning goals
                   </p>
                 </div>
                 

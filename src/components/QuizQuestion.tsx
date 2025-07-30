@@ -85,16 +85,16 @@ export default function QuizQuestion({
               disabled={disabled}
               className={`w-full p-5 text-left rounded-2xl border-2 transition-all duration-300 hover:shadow-lg ${
                 selected
-                  ? 'border-blue-500 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-900 shadow-lg'
+                  ? 'border-brand-500 bg-gradient-to-r from-brand-50 to-brand-100 text-brand-900 shadow-lg'
                   : disabled
                   ? 'border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed'
-                  : 'border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50 text-gray-700 hover:shadow-md'
+                  : 'border-gray-200 bg-white hover:border-brand-300 hover:bg-brand-50 text-gray-700 hover:shadow-md'
               }`}
             >
               <div className="flex items-center">
                 <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center transition-all duration-200 ${
                   selected
-                    ? 'border-blue-500 bg-blue-500 scale-110'
+                    ? 'border-brand-500 bg-brand-500 scale-110'
                     : disabled
                     ? 'border-gray-200'
                     : 'border-gray-300'
