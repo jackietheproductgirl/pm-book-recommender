@@ -6,9 +6,10 @@ import { quizQuestions } from '@/data/quizData';
 import QuizQuestion from './QuizQuestion';
 import QuizProgress from './QuizProgress';
 import BookRecommendation from './BookRecommendation';
+import EmailCollection from './EmailCollection';
 
 export default function Quiz() {
-  const { state, dispatch, completeQuiz } = useQuiz();
+  const { state, dispatch, completeQuiz, submitEmail, skipEmail } = useQuiz();
   const currentQuestion = quizQuestions[state.currentQuestionIndex];
   const totalQuestions = quizQuestions.length;
 
@@ -120,7 +121,7 @@ export default function Quiz() {
             )}
 
             {/* Recommendations */}
-            {state.recommendations.length > 0 && (
+            {state.recommendations.length > 0 && !state.showEmailCollection && (
               <div className="mt-8">
                 <div className="text-center mb-8">
                   {/* Success Checkmark */}
@@ -138,9 +139,25 @@ export default function Quiz() {
                   <p className="text-lg text-gray-700 mb-2">
                     Based on your answers, here are the top 5 books to accelerate your product management journey 🚀
                   </p>
-                  <p className="text-gray-600">
+                  <p className="text-gray-700 mb-4">
                     Each recommendation is tailored to your experience level and learning goals
                   </p>
+                  
+                  {/* Email Collection Prompt */}
+                  <div className="bg-gradient-to-r from-brand-50 to-brand-100 rounded-xl p-6 mb-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Want more recommendations?
+                    </h3>
+                    <p className="text-gray-700 mb-4">
+                      Get personalized book updates and PM resources delivered to your inbox.
+                    </p>
+                    <button
+                      onClick={() => dispatch({ type: 'SHOW_EMAIL_COLLECTION' })}
+                      className="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors"
+                    >
+                      Get Updates
+                    </button>
+                  </div>
                 </div>
                 
                 <div className="space-y-6">
@@ -154,6 +171,41 @@ export default function Quiz() {
                   <button
                     onClick={() => dispatch({ type: 'RESET_QUIZ' })}
                     className="px-8 py-3 bg-gray-600 text-white rounded-lg font-medium hover:bg-gray-700 transition-colors"
+                  >
+                    Take Quiz Again
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Email Collection */}
+            {state.showEmailCollection && (
+              <div className="mt-8">
+                <EmailCollection
+                  onSubmit={submitEmail}
+                  onSkip={skipEmail}
+                />
+              </div>
+            )}
+
+            {/* Success Message After Email Submission */}
+            {state.emailSubmitted && (
+              <div className="mt-8 text-center">
+                <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    Thanks for subscribing!
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    You'll receive our latest PM book recommendations and resources.
+                  </p>
+                  <button
+                    onClick={() => dispatch({ type: 'RESET_QUIZ' })}
+                    className="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors"
                   >
                     Take Quiz Again
                   </button>

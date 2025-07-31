@@ -11,6 +11,8 @@ interface QuizState {
   isComplete: boolean;
   isLoading: boolean;
   recommendations: BookRecommendation[];
+  showEmailCollection: boolean;
+  emailSubmitted: boolean;
 }
 
 type QuizAction =
@@ -20,6 +22,9 @@ type QuizAction =
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'COMPLETE_QUIZ' }
   | { type: 'SET_RECOMMENDATIONS'; payload: BookRecommendation[] }
+  | { type: 'SHOW_EMAIL_COLLECTION' }
+  | { type: 'SUBMIT_EMAIL'; payload: { firstName: string; email: string } }
+  | { type: 'SKIP_EMAIL' }
   | { type: 'RESET_QUIZ' };
 
 const initialState: QuizState = {
@@ -28,6 +33,8 @@ const initialState: QuizState = {
   isComplete: false,
   isLoading: false,
   recommendations: [],
+  showEmailCollection: false,
+  emailSubmitted: false,
 };
 
 function quizReducer(state: QuizState, action: QuizAction): QuizState {
@@ -78,6 +85,25 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         recommendations: action.payload,
       };
 
+    case 'SHOW_EMAIL_COLLECTION':
+      return {
+        ...state,
+        showEmailCollection: true,
+      };
+
+    case 'SUBMIT_EMAIL':
+      return {
+        ...state,
+        emailSubmitted: true,
+        showEmailCollection: false,
+      };
+
+    case 'SKIP_EMAIL':
+      return {
+        ...state,
+        showEmailCollection: false,
+      };
+
     case 'RESET_QUIZ':
       return initialState;
 
@@ -90,6 +116,8 @@ interface QuizContextType {
   state: QuizState;
   dispatch: React.Dispatch<QuizAction>;
   completeQuiz: () => Promise<void>;
+  submitEmail: (data: { firstName: string; email: string }) => Promise<void>;
+  skipEmail: () => void;
 }
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
@@ -146,6 +174,7 @@ export function QuizProvider({ children }: { children: ReactNode }) {
       dispatch({ type: 'SET_LOADING', payload: false });
       dispatch({ type: 'SET_RECOMMENDATIONS', payload: data.recommendations });
       dispatch({ type: 'COMPLETE_QUIZ' });
+      dispatch({ type: 'SHOW_EMAIL_COLLECTION' });
       
       console.log('State updates completed - recommendations should now be visible');
     } catch (error) {
@@ -155,11 +184,32 @@ export function QuizProvider({ children }: { children: ReactNode }) {
       dispatch({ type: 'SET_LOADING', payload: false });
       dispatch({ type: 'SET_RECOMMENDATIONS', payload: mockRecommendations });
       dispatch({ type: 'COMPLETE_QUIZ' });
+      dispatch({ type: 'SHOW_EMAIL_COLLECTION' });
     }
   };
 
+  const submitEmail = async (data: { firstName: string; email: string }) => {
+    try {
+      // Here you would typically send the email to your backend
+      console.log('Submitting email:', data);
+      
+      // For now, we'll just simulate a successful submission
+      // In a real app, you'd make an API call here
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      dispatch({ type: 'SUBMIT_EMAIL', payload: data });
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      throw error;
+    }
+  };
+
+  const skipEmail = () => {
+    dispatch({ type: 'SKIP_EMAIL' });
+  };
+
   return (
-    <QuizContext.Provider value={{ state, dispatch, completeQuiz }}>
+    <QuizContext.Provider value={{ state, dispatch, completeQuiz, submitEmail, skipEmail }}>
       {children}
     </QuizContext.Provider>
   );
