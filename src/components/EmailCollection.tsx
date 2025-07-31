@@ -4,10 +4,9 @@ import React, { useState } from 'react';
 
 interface EmailCollectionProps {
   onSubmit: (data: { firstName: string; email: string }) => void;
-  onSkip: () => void;
 }
 
-export default function EmailCollection({ onSubmit, onSkip }: EmailCollectionProps) {
+export default function EmailCollection({ onSubmit }: EmailCollectionProps) {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,7 +37,7 @@ export default function EmailCollection({ onSubmit, onSkip }: EmailCollectionPro
           Stay Updated
         </h2>
         <p className="text-gray-600">
-          Get notified about new book recommendations and PM resources
+          Subscribe to the Product Creator Newsletter to get the inside scoop into others are building (including products like this)!
         </p>
       </div>
 
@@ -83,21 +82,13 @@ export default function EmailCollection({ onSubmit, onSkip }: EmailCollectionPro
                 : 'bg-brand-600 text-white hover:bg-brand-700 shadow-sm'
             }`}
           >
-            {isSubmitting ? 'Submitting...' : 'Get Updates'}
-          </button>
-
-          <button
-            type="button"
-            onClick={onSkip}
-            className="w-full py-3 px-6 text-gray-600 hover:text-gray-800 transition-colors"
-          >
-            Skip for now
+            {isSubmitting ? 'Submitting...' : 'See recommendations'}
           </button>
         </div>
       </form>
 
       <div className="mt-4 text-xs text-gray-500 text-center">
-        We'll only send you relevant PM content. Unsubscribe anytime.
+        It's totally free. Unsubscribe at anytime.
       </div>
     </div>
   );

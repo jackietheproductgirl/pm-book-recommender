@@ -142,22 +142,6 @@ export default function Quiz() {
                   <p className="text-gray-700 mb-4">
                     Each recommendation is tailored to your experience level and learning goals
                   </p>
-                  
-                  {/* Email Collection Prompt */}
-                  <div className="bg-gradient-to-r from-brand-50 to-brand-100 rounded-xl p-6 mb-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      Want more recommendations?
-                    </h3>
-                    <p className="text-gray-700 mb-4">
-                      Get personalized book updates and PM resources delivered to your inbox.
-                    </p>
-                    <button
-                      onClick={() => dispatch({ type: 'SHOW_EMAIL_COLLECTION' })}
-                      className="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors"
-                    >
-                      Get Updates
-                    </button>
-                  </div>
                 </div>
                 
                 <div className="space-y-6">
@@ -183,7 +167,6 @@ export default function Quiz() {
               <div className="mt-8">
                 <EmailCollection
                   onSubmit={submitEmail}
-                  onSkip={skipEmail}
                 />
               </div>
             )}
