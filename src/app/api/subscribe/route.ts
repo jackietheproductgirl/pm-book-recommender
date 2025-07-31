@@ -11,9 +11,11 @@ export async function POST(request: NextRequest) {
     // Log the subscription for now
     console.log('New subscription:', subscription);
     
-    // Also write to a file for easy access
-    const logPath = join(process.cwd(), 'subscriptions.log');
-    appendFileSync(logPath, JSON.stringify(subscription) + '\n');
+    // Write to file only in development
+    if (process.env.NODE_ENV === 'development') {
+      const logPath = join(process.cwd(), 'subscriptions.log');
+      appendFileSync(logPath, JSON.stringify(subscription) + '\n');
+    }
     
     // TODO: In production, you would:
     // 1. Store this in a database (e.g., PostgreSQL, MongoDB)
