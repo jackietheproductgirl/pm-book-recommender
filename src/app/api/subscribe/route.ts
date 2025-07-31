@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { writeFileSync, appendFileSync } from 'fs';
+import { join } from 'path';
 
 export async function POST(request: NextRequest) {
   try {
     const { firstName, email } = await request.json();
     
+    const subscription = { firstName, email, timestamp: new Date().toISOString() };
+    
     // Log the subscription for now
-    console.log('New subscription:', { firstName, email, timestamp: new Date().toISOString() });
+    console.log('New subscription:', subscription);
+    
+    // Also write to a file for easy access
+    const logPath = join(process.cwd(), 'subscriptions.log');
+    appendFileSync(logPath, JSON.stringify(subscription) + '\n');
     
     // TODO: In production, you would:
     // 1. Store this in a database (e.g., PostgreSQL, MongoDB)

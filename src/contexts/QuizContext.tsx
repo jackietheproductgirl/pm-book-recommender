@@ -108,7 +108,10 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
       };
 
     case 'RESET_QUIZ':
-      return initialState;
+      return {
+        ...initialState,
+        hasSubmittedEmail: state.hasSubmittedEmail, // Preserve email submission status
+      };
 
     default:
       return state;
