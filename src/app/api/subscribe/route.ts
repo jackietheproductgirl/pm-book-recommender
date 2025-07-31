@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFileSync, appendFileSync } from 'fs';
+import { appendFileSync } from 'fs';
 import { join } from 'path';
 import { supabase } from '@/lib/supabase';
 

@@ -114,7 +114,7 @@ function parseGPTResponse(books: BookRecommendation[], gptResponse: string): Boo
 
     // Map GPT recommendations back to book objects
     const mappedBooks = recommendations
-      .map((rec: any) => {
+              .map((rec: Record<string, any>) => {
         console.log('Looking for book with ID:', rec.bookId);
         const book = books.find(b => b.id === rec.bookId);
         if (!book) {

@@ -9,7 +9,7 @@ import BookRecommendation from './BookRecommendation';
 import EmailCollection from './EmailCollection';
 
 export default function Quiz() {
-  const { state, dispatch, completeQuiz, submitEmail, skipEmail } = useQuiz();
+  const { state, dispatch, completeQuiz, submitEmail } = useQuiz();
   const currentQuestion = quizQuestions[state.currentQuestionIndex];
   const totalQuestions = quizQuestions.length;
 
@@ -60,7 +60,7 @@ export default function Quiz() {
               Find Your Next PM Book
             </h1>
             <p className="text-gray-600">
-              Let's discover the perfect books for your product management journey
+              Let&apos;s discover the perfect books for your product management journey
             </p>
           </div>
         )}

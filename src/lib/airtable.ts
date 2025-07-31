@@ -1,4 +1,7 @@
 import { BookRecommendation } from '@/types/book';
+import fs from 'fs';
+import csv from 'csv-parser';
+import path from 'path';
 
 // Cache for Airtable data
 let cachedBooks: BookRecommendation[] | null = null;
@@ -39,9 +42,6 @@ async function getMockAirtableData(): Promise<BookRecommendation[]> {
   await new Promise(resolve => setTimeout(resolve, 500));
   
   // Import the complete 75 books data
-  const fs = require('fs');
-  const csv = require('csv-parser');
-  const path = require('path');
   
   try {
     const csvPath = path.join(process.cwd(), 'complete-75-books-clean.csv');
@@ -64,7 +64,7 @@ async function getMockAirtableData(): Promise<BookRecommendation[]> {
         
         fs.createReadStream(csvPath)
           .pipe(csv())
-          .on('data', (row: any) => {
+          .on('data', (row: Record<string, string>) => {
             // Check if we have a manual cover for this book
             const manualCover = manualCovers[row.title];
             
@@ -171,7 +171,7 @@ export async function fetchFromAirtable(): Promise<BookRecommendation[]> {
     console.log('Raw Airtable data:', data);
     console.log('Number of records:', data.records?.length || 0);
     
-    const books = data.records.map((record: any) => {
+    const books = data.records.map((record: Record<string, any>) => {
       const book = {
         id: record.id,
         title: record.fields.title || '',
