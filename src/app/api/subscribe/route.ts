@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFileSync, appendFileSync } from 'fs';
 import { join } from 'path';
+import { supabase } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,7 +9,7 @@ export async function POST(request: NextRequest) {
     
     const subscription = { firstName, email, timestamp: new Date().toISOString() };
     
-    // Log the subscription for now
+    // Log the subscription
     console.log('New subscription:', subscription);
     
     // Write to file only in development
@@ -17,11 +18,25 @@ export async function POST(request: NextRequest) {
       appendFileSync(logPath, JSON.stringify(subscription) + '\n');
     }
     
-    // TODO: In production, you would:
-    // 1. Store this in a database (e.g., PostgreSQL, MongoDB)
-    // 2. Add to your email service (e.g., ConvertKit, Mailchimp, etc.)
-    // 3. Send a welcome email
-    // 4. Add to your CRM
+    // Store in Supabase database
+    try {
+      const { data, error } = await supabase
+        .from('subscriptions')
+        .insert([subscription]);
+      
+      if (error) {
+        console.error('Supabase error:', error);
+        return NextResponse.json(
+          { success: false, message: 'Failed to store subscription' },
+          { status: 500 }
+        );
+      }
+      
+      console.log('Stored in Supabase:', data);
+    } catch (dbError) {
+      console.error('Database error:', dbError);
+      // Continue with success even if DB fails (graceful degradation)
+    }
     
     // For now, we'll just return success
     return NextResponse.json({ 
