@@ -26,7 +26,7 @@ export default function EmailCollection({ onSubmit }: EmailCollectionProps) {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+    <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md mx-auto">
       <div className="text-center mb-6">
         <div className="w-16 h-16 bg-gradient-to-r from-brand-500 to-brand-600 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,10 +34,10 @@ export default function EmailCollection({ onSubmit }: EmailCollectionProps) {
           </svg>
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Stay Updated
+          Join 500+ Product Creators
         </h2>
         <p className="text-gray-600">
-          Subscribe to the Product Creator Newsletter to get the inside scoop (tips & tricks) into what others are building, including products like this!
+          Join a growing community of product managers learning to build smarter with AI. Get early access to new tools, practical tips, and behind-the-scenes insights from real creators.
         </p>
       </div>
 
@@ -88,7 +88,7 @@ export default function EmailCollection({ onSubmit }: EmailCollectionProps) {
       </form>
 
       <div className="mt-4 text-xs text-gray-500 text-center">
-        It's completely free. Unsubscribe at anytime.
+        Completely free, no spam. Unsubscribe anytime.
       </div>
     </div>
   );
