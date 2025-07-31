@@ -171,7 +171,7 @@ export async function fetchFromAirtable(): Promise<BookRecommendation[]> {
     console.log('Raw Airtable data:', data);
     console.log('Number of records:', data.records?.length || 0);
     
-    const books = data.records.map((record: Record<string, any>) => {
+    const books = data.records.map((record: { id: string; fields: Record<string, unknown | string[]> }) => {
       const book = {
         id: record.id,
         title: record.fields.title || '',
@@ -181,10 +181,10 @@ export async function fetchFromAirtable(): Promise<BookRecommendation[]> {
         amazonLink: record.fields.amazon_link || '',
         coverImage: record.fields.cover_image || '',
         personalizedExplanation: record.fields.personalized_explanation || '',
-        tags: record.fields.tags?.join(', ') || '',
-        difficultyLevel: record.fields.difficulty_level || '',
-        industryFocus: record.fields.industry_focus?.join(', ') || '',
-        learningStyle: record.fields.learning_style?.join(', ') || '',
+        tags: Array.isArray(record.fields.tags) ? record.fields.tags.join(', ') : (record.fields.tags as string) || '',
+        difficultyLevel: record.fields.difficulty_level as string || '',
+        industryFocus: Array.isArray(record.fields.industry_focus) ? record.fields.industry_focus.join(', ') : (record.fields.industry_focus as string) || '',
+        learningStyle: Array.isArray(record.fields.learning_style) ? record.fields.learning_style.join(', ') : (record.fields.learning_style as string) || '',
       };
       console.log('Parsed book:', book);
       return book;

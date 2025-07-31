@@ -88,7 +88,7 @@ export default function EmailCollection({ onSubmit }: EmailCollectionProps) {
       </form>
 
       <div className="mt-4 text-xs text-gray-500 text-center">
-        It's completely free. Unsubscribe anytime.
+        It&apos;s completely free. Unsubscribe anytime.
       </div>
     </div>
   );
