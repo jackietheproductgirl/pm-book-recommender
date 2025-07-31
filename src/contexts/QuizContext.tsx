@@ -13,6 +13,7 @@ interface QuizState {
   recommendations: BookRecommendation[];
   showEmailCollection: boolean;
   emailSubmitted: boolean;
+  hasSubmittedEmail: boolean;
 }
 
 type QuizAction =
@@ -35,6 +36,7 @@ const initialState: QuizState = {
   recommendations: [],
   showEmailCollection: false,
   emailSubmitted: false,
+  hasSubmittedEmail: false,
 };
 
 function quizReducer(state: QuizState, action: QuizAction): QuizState {
@@ -96,6 +98,7 @@ function quizReducer(state: QuizState, action: QuizAction): QuizState {
         ...state,
         emailSubmitted: true,
         showEmailCollection: false,
+        hasSubmittedEmail: true,
       };
 
     case 'SKIP_EMAIL':
@@ -174,7 +177,11 @@ export function QuizProvider({ children }: { children: ReactNode }) {
       dispatch({ type: 'SET_LOADING', payload: false });
       dispatch({ type: 'SET_RECOMMENDATIONS', payload: data.recommendations });
       dispatch({ type: 'COMPLETE_QUIZ' });
-      dispatch({ type: 'SHOW_EMAIL_COLLECTION' });
+      
+      // Only show email collection if user hasn't submitted before
+      if (!state.hasSubmittedEmail) {
+        dispatch({ type: 'SHOW_EMAIL_COLLECTION' });
+      }
       
       console.log('State updates completed - recommendations should now be visible');
     } catch (error) {
@@ -184,18 +191,33 @@ export function QuizProvider({ children }: { children: ReactNode }) {
       dispatch({ type: 'SET_LOADING', payload: false });
       dispatch({ type: 'SET_RECOMMENDATIONS', payload: mockRecommendations });
       dispatch({ type: 'COMPLETE_QUIZ' });
-      dispatch({ type: 'SHOW_EMAIL_COLLECTION' });
+      
+      // Only show email collection if user hasn't submitted before
+      if (!state.hasSubmittedEmail) {
+        dispatch({ type: 'SHOW_EMAIL_COLLECTION' });
+      }
     }
   };
 
   const submitEmail = async (data: { firstName: string; email: string }) => {
     try {
-      // Here you would typically send the email to your backend
       console.log('Submitting email:', data);
       
-      // For now, we'll just simulate a successful submission
-      // In a real app, you'd make an API call here
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Call the subscription API
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to subscribe');
+      }
+
+      const result = await response.json();
+      console.log('Subscription result:', result);
       
       dispatch({ type: 'SUBMIT_EMAIL', payload: data });
     } catch (error) {
