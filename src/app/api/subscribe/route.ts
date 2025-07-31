@@ -7,7 +7,11 @@ export async function POST(request: NextRequest) {
   try {
     const { firstName, email } = await request.json();
     
-    const subscription = { firstName, email, timestamp: new Date().toISOString() };
+    const subscription = { 
+      first_name: firstName, 
+      email, 
+      timestamp: new Date().toISOString() 
+    };
     
     // Log the subscription
     console.log('New subscription:', subscription);
