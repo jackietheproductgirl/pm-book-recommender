@@ -34,10 +34,10 @@ export default function EmailCollection({ onSubmit }: EmailCollectionProps) {
           </svg>
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Join 500+ Product Creators
+          Unlock Your Book Picks + More
         </h2>
         <p className="text-gray-600">
-          Join a growing community of product managers learning to build smarter with AI. Get early access to new tools, practical tips, and behind-the-scenes insights from real creators.
+          Join 500+ product managers learning to build smarter with AI. Get weekly tips, tools, and real examples from creators like you.
         </p>
       </div>
 
@@ -88,7 +88,7 @@ export default function EmailCollection({ onSubmit }: EmailCollectionProps) {
       </form>
 
       <div className="mt-4 text-xs text-gray-500 text-center">
-        Completely free, no spam. Unsubscribe anytime.
+        It's completely free. Unsubscribe anytime.
       </div>
     </div>
   );
